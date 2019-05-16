@@ -1,0 +1,1 @@
+.dds files containing the detail normal cube maps can be placed here.
