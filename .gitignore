@@ -1,1 +1,4 @@
-
+venv/
+.idea/
+dds/*.dds
+out/*.png
