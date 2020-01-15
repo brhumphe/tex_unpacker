@@ -1,15 +1,13 @@
 import subprocess
 from PIL import Image
 
-in_file = "dds/Shared_Characters_DN_src.dds"
-out_file = "out/Shared_Characters_DN_src.png"
+in_file = "dds/Weapons_NC_Doku_DN_src.dds"
+out_file = "out/Weapons_NC_Doku_DN_src.png"
 
-subprocess.run(
-    "./texassemble.exe h-strip "
-    "{in_path}"
-    " -o "
-    "{out_path}"
-    " -y -f R8G8B8A8_UNORM".format(in_path=in_file, out_path=out_file))
+output = subprocess.call(
+    f"./texassemble.exe h-strip {in_file} -o {out_file} -y -f R8G8B8A8_UNORM")
+
+# print(output.args)
 
 with Image.open(out_file) as cube:
     size = cube.size[1]
@@ -18,4 +16,5 @@ with Image.open(out_file) as cube:
         crop = (i * size, 0, i * size + size, size)
         print(crop)
         x_pos = cube.crop(crop)
-        x_pos.save("out/Shared_Characters_DN_src_0" + str(i + 1) + ".png")
+        # TODO: Strip the name from the path of in_file instead of providing a separate filename
+        x_pos.save("out/Weapons_NC_Doku_DN_src_0" + str(i + 1) + ".png")
